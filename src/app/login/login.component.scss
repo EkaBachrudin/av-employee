@@ -1,0 +1,36 @@
+.login-container{
+  @apply h-screen flex justify-center items-center;
+  .login-content{
+    @apply mx-6 max-w-[400px] w-[400px] p-6 border border-primary-rzaGrey20 shadow rounded-lg;
+    .title{
+      @apply text-f-28 font-bold;
+    }
+
+    .login-form{
+      @apply bg-primary-rzaWhite;
+      .group-input{
+        @apply mt-7;
+        label{
+          @apply font-medium block text-left mb-1 text-primary-rzaGrey80;
+        }
+        .error-label {
+          @apply text-primary-rzaRed
+        }
+        input{
+          @apply w-full p-2 border border-primary-rzaGrey40 rounded-lg focus:border-primary-rzaGrey50 focus:outline-none;
+        }
+        .error-input{
+          @apply border-2 border-primary-rzaRed focus:border-primary-rzaRed focus:outline-none;
+        }
+        .error-message{
+          @apply font-medium text-primary-rzaRed absolute text-f-12 mt-1;
+        }
+      }
+
+      .submit{
+        @apply rounded-lg bg-secondary-rzaOtherLightBlue text-primary-rzaWhite text-f-18 font-bold cursor-pointer w-full mt-8 py-3 disabled:bg-primary-rzaGrey40 disabled:cursor-not-allowed;
+      }
+    }
+  }
+
+}

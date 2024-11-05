@@ -1,1 +1,41 @@
-<p>login works!</p>
+<div class="login-container">
+  <div class="login-content">
+    <div class="title">Log In</div>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="login-form">
+      <div class="group-input">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          [ngClass]="{'error-input': email?.invalid && email?.dirty}"
+        />
+        <div *ngIf="email?.invalid && email?.dirty" class="error-message">
+          {{ emailErrors }}
+        </div>
+      </div>
+
+      <div class="group-input">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          [ngClass]="{'error-input': password?.invalid && password?.dirty}"
+        />
+        <div *ngIf="password?.invalid && password?.dirty" class="error-message">
+         {{passwordErrors}}
+        </div>
+      </div>
+
+      <button
+        class="submit"
+          type="submit"
+          [disabled]="loginForm.invalid"
+        >
+        Login
+      </button>
+    </form>
+  </div>
+</div>
