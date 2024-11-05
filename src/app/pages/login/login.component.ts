@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +17,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class LoginComponent implements OnInit {
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
   ) {
-
+    if (this.authService.isLoggedIn()) this.router.navigate(['/list']);
   }
 
   loginForm!: FormGroup;
@@ -34,11 +38,15 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      const isAuthenticated = this.authService.login(email, password);
 
-      console.log('Form Submitted', this.loginForm.value);
-
-    } else {
-      console.log('Form is invalid');
+      if (isAuthenticated) {
+        this.router.navigate(['/list']);
+        this.authService.isLoggedIn()
+      } else {
+        alert('Invalid email or password');
+      }
     }
   }
 

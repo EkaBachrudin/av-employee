@@ -17,10 +17,10 @@
           @apply text-primary-rzaRed
         }
         input{
-          @apply w-full p-2 border border-primary-rzaGrey40 rounded-lg focus:border-primary-rzaGrey50 focus:outline-none;
+          @apply w-full p-2 border border-primary-rzaGrey40 rounded-lg focus:border-primary-rzaGrey50 focus:outline-none bg-primary-rzaWhite;
         }
         .error-input{
-          @apply border-2 border-primary-rzaRed focus:border-primary-rzaRed focus:outline-none;
+          @apply border border-primary-rzaRed focus:border-primary-rzaRed focus:outline-none;
         }
         .error-message{
           @apply font-medium text-primary-rzaRed absolute text-f-12 mt-1;
