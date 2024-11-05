@@ -1,0 +1,22 @@
+.employee-list-container{
+  .top{
+    @apply py-4 flex flex-wrap justify-between items-center gap-2;
+    .btn-primary-submit{
+      @apply w-fit font-medium text-f-12 mt-0 px-4 py-2 mx-4;
+    }
+
+    .filter{
+      @apply flex flex-wrap mx-4 items-center gap-2;
+
+      .search{
+        @apply relative;
+        input{
+          @apply bg-secondary-rzaDarkBlue100 text-f-14 border border-primary-rzaGrey40 rounded-lg py-2 pl-8 focus:border-primary-rzaGrey60 focus:outline-none;
+        }
+        .icon{
+          @apply absolute top-[20%] left-2;
+        }
+      }
+    }
+  }
+}

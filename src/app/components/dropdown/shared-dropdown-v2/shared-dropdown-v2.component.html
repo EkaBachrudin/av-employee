@@ -1,0 +1,14 @@
+<div class="dropdown-v2">
+  <div class="dropdown-v2-input" (click)="toggleOption()">
+    <div class="label">
+      <span class="hidden  sm:inline">{{placeholder}} : </span> <span class="value">{{selectedOption.label}} </span>
+    </div>
+    <mat-icon aria-hidden="false" fontIcon="keyboard_arrow_down"></mat-icon>
+  </div>
+
+  <div class="dropdown-v2-select" *ngIf="isOpenOption">
+    <div class="dropdown-v2-option" *ngFor="let option of options" [ngClass]="{'border-2 border-primary-rzaGrey40 rounded font-bold m-[2px]': selectedOption.value === option.value}">
+      <button (click)="onSelect(option.value)">{{ option.label }}</button>
+    </div>
+  </div>
+</div>

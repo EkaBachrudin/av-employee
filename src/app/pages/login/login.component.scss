@@ -26,10 +26,6 @@
           @apply font-medium text-primary-rzaRed absolute text-f-12 mt-1;
         }
       }
-
-      .submit{
-        @apply rounded-lg bg-secondary-rzaOtherLightBlue text-primary-rzaWhite text-f-18 font-bold cursor-pointer w-full mt-8 py-3 disabled:bg-primary-rzaGrey40 disabled:cursor-not-allowed;
-      }
     }
   }
 

@@ -1,0 +1,21 @@
+.dropdown-v2{
+  @apply relative;
+  .dropdown-v2-input{
+    @apply flex bg-secondary-rzaDarkBlue100 text-f-14 border border-primary-rzaGrey40 rounded-lg py-2 px-3 focus:border-primary-rzaGrey60 focus:outline-none relative;
+    .label{
+      @apply text-f-14 text-primary-rzaGrey80;
+      .value{
+        @apply text-primary-darkBlue font-bold;
+      }
+    }
+  }
+
+  .dropdown-v2-select{
+    @apply absolute bg-primary-rzaWhite shadow-lg w-full text-f-14 rounded-b-lg top-9;
+
+    .dropdown-v2-option{
+      @apply px-4 py-3;
+    }
+  }
+}
+
