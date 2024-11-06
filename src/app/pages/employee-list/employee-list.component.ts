@@ -5,6 +5,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SharedDropdownV2Component } from '../../components/dropdown/shared-dropdown-v2/shared-dropdown-v2.component';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { EmployeeService } from '../../application/employee.service';
+import { Employee } from '../../domain/employee.model';
+import { CommonModule } from '@angular/common';
+import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-employee-list',
@@ -13,7 +16,9 @@ import { EmployeeService } from '../../application/employee.service';
     LayoutPageComponent,
     MatIconModule,
     ReactiveFormsModule,
-    SharedDropdownV2Component
+    SharedDropdownV2Component,
+    CommonModule,
+    MatPaginatorModule
   ],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
@@ -22,11 +27,22 @@ export class EmployeeListComponent {
   form: FormGroup;
 
   get selectedOption() { return this.form.get('selectedOption') };
+  get search() { return this.form.get('search') };
+  employeeData: Employee[] = [];
+
+  paginatedEmployees: Employee[] = [];
+
+  totalEmployees: number = 100;
+  filteredTotal: number = 0;
+  pageSize: number = 10;
+  currentPage: number = 0;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
 
   dropdownOptions: { value: string; label: string }[] = [
-    { value: 'option1', label: 'Option 1' },
-    { value: 'option2', label: 'Option 2' },
-    { value: 'option3', label: 'Option 3' },
+    { value: '', label: 'All' },
+    { value: 'option2', label: 'Active' },
+    { value: 'option3', label: 'Probation' },
+    { value: 'option4', label: 'Inactive' }
   ];
 
   constructor(
@@ -34,21 +50,22 @@ export class EmployeeListComponent {
     private employeeService: EmployeeService
   ) {
     this.form = this.fb.group({
-      selectedOption: ['option1'],
+      selectedOption: [''],
       search: ['']
+    });
+
+    this.employeeService.getEmployees().subscribe((data) => {
+      this.employeeData = data;
+      this.updatePaginatedEmployees();
     });
   }
 
   ngOnInit(): void {
     this.setupSearchDebounce();
-
-    this.employeeService.getEmployees().subscribe((data) => {
-      console.log(data);
-    });
   }
 
   onFilter(): void {
-    console.log('Form Value:', this.form.value);
+    this.updatePaginatedEmployees();
   }
 
   setupSearchDebounce(): void {
@@ -60,5 +77,30 @@ export class EmployeeListComponent {
       .subscribe(() => {
         this.onFilter();
       });
+  }
+
+  updatePaginatedEmployees() {
+    // Apply filter first
+    const statusFiltered = this.dropdownOptions.find(dr => dr.value === this.selectedOption?.value);
+    console.log(statusFiltered)
+    const filteredEmployees = this.employeeData.filter(employee => {
+      const matchesUsername = employee.username.toLowerCase().includes(this.search?.value.toLowerCase());
+      const matchesStatus = statusFiltered?.value ? employee.status === statusFiltered?.label : true;
+      console.log(matchesStatus)
+      return matchesUsername && matchesStatus;
+    });
+
+    this.filteredTotal = filteredEmployees.length;
+    this.totalEmployees = this.filteredTotal;
+
+    const start = this.currentPage * this.pageSize;
+    const end = start + this.pageSize;
+    this.paginatedEmployees = filteredEmployees.slice(start, end);
+  }
+
+  onPageChange(event: PageEvent) {
+    this.pageSize = event.pageSize;
+    this.currentPage = event.pageIndex;
+    this.updatePaginatedEmployees();
   }
 }

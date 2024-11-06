@@ -7,7 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:avo-employee": "node dist/avo-employee/server/server.mjs"
+    "serve:ssr:avo-employee": "node dist/avo-employee/server/server.mjs",
+    "start:json-server": "json-server --watch db.json --port 3000",
+    "start:ng": "ng serve --port 4200",
+    "start:all": "concurrently \"npm run start:json-server\" \"npm run start:ng\""
   },
   "private": true,
   "dependencies": {
@@ -38,7 +41,9 @@
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
     "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.0",
     "jasmine-core": "~5.2.0",
+    "json-server": "^1.0.0-beta.3",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",

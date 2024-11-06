@@ -17,5 +17,37 @@
 
       </form>
     </section>
+
+    <section class="employee-table">
+      <table>
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Basic Salary</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let emp of paginatedEmployees">
+            <td>{{emp.username}}</td>
+            <td>{{emp.email}}</td>
+            <td>{{emp.basicSalary}}</td>
+            <td>{{emp.status}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="paginate">
+      <mat-paginator
+        [length]="totalEmployees"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="onPageChange($event)"
+        aria-label="Select page">
+      </mat-paginator>
+    </div>
   </div>
 </app-layout-page>

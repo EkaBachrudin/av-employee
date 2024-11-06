@@ -8,6 +8,7 @@ import { EmployeeRepository } from './application/employee.repository';
 import { EmployeeMockRepository } from './infrastructure/employee.mock';
 import { EmployeeApiRepository } from './infrastructure/employee.adapter';
 import { environment } from '../environments/environment';
+import { provideHttpClient } from '@angular/common/http';
 
 const employeeRepositoryProvider: Provider = {
   provide: EmployeeRepository,
@@ -19,6 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes), provideClientHydration(),
     provideAnimationsAsync(),
-    employeeRepositoryProvider
+    employeeRepositoryProvider,
+    provideHttpClient()
   ]
 };
