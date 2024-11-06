@@ -1,7 +1,7 @@
 <app-layout-page [title]="'Employee List'">
   <div class="employee-list-container">
     <section class="top">
-      <button class="btn-primary-submit">Add Employee</button>
+      <button [routerLink]="['/add']" routerLinkActive="router-link-active"  class="btn-primary-submit">Add Employee</button>
       <form class="filter" [formGroup]="form" (ngSubmit)="onFilter()">
 
         <div class="search">

@@ -11,7 +11,8 @@
       .search{
         @apply relative;
         input{
-          @apply bg-secondary-rzaDarkBlue100 text-f-14 border border-primary-rzaGrey40 rounded-lg py-2 pl-8 focus:border-primary-rzaGrey60 focus:outline-none;
+          @apply bg-secondary-rzaDarkBlue100 text-f-14 border rounded-lg py-2 pl-8 focus:border-primary-rzaGrey60 focus:outline-none;
+          border-color: rgb(237 237 237);
         }
         .icon{
           @apply absolute top-[20%] left-2;

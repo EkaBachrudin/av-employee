@@ -12,6 +12,7 @@ import { RupiahPipe } from '../../shared/pipes/rupiah.pipe';
 import { FilterService } from '../../shared/services/auth/filter/filter.service';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-employee-list',
@@ -24,7 +25,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     CommonModule,
     MatPaginatorModule,
     RupiahPipe,
-    MatMenuModule
+    MatMenuModule,
+    RouterModule
   ],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'

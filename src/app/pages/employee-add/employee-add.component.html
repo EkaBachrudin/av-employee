@@ -1,0 +1,115 @@
+<app-layout-page [title]="'Add New Employee'">
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <div class="group">
+      <div  class="label">Username:</div>
+      <input formControlName="username"
+       [ngClass]="{'error-input': username?.invalid && username?.dirty}" />
+      <div class="error" *ngIf="username?.dirty && username?.invalid">
+        <small *ngIf="username?.hasError('required')">Username is required.</small>
+        <small *ngIf="username?.hasError('minlength')">Minimum 3 characters required.</small>
+        <small *ngIf="username?.hasError('maxlength')">Maximum 20 characters allowed.</small>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="label">First Name:</div>
+      <input formControlName="firstName"
+      [ngClass]="{'error-input': firstName?.invalid && firstName?.dirty}" />
+      <div class="error" *ngIf="firstName?.dirty && firstName?.invalid">
+        <small *ngIf="firstName?.hasError('required')">First name is required.</small>
+        <small *ngIf="firstName?.hasError('minlength')">Minimum 2 characters required.</small>
+      </div>
+    </div>
+
+   <div class="group">
+      <div class="label">Last Name:</div>
+      <input formControlName="lastName"
+        [ngClass]="{'error-input': lastName?.invalid && lastName?.dirty}"
+      />
+      <div class="error" *ngIf="lastName?.dirty && lastName?.invalid">
+        <small *ngIf="lastName?.hasError('required')">Last name is required.</small>
+        <small *ngIf="lastName?.hasError('minlength')">Minimum 2 characters required.</small>
+      </div>
+   </div>
+
+    <div class="group">
+      <div class="label">Email:</div>
+      <input formControlName="email"
+        [ngClass]="{'error-input': email?.invalid && email?.dirty}" />
+      <div class="error" *ngIf="email?.dirty && email?.invalid">
+        <small *ngIf="email?.hasError('required')">Email is required.</small>
+        <small *ngIf="email?.hasError('email')">Enter a valid email.</small>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="label">Birth Date:</div>
+      <div class="input"
+        [ngClass]="{'error-input': birthDate?.invalid && birthDate?.dirty}" (click)="picker.open()">
+        {{selectedDate ? selectedDate : 'DD/MM/YYYY'}}
+      </div>
+      <div class="icon">
+        <mat-icon aria-hidden="false" fontIcon="calendar_month"></mat-icon>
+      </div>
+      <div class="error" *ngIf="birthDate?.dirty && birthDate?.invalid">
+        <small>Birth date is required.</small>
+      </div>
+
+      <!-- [max]="maxDate" -->
+      <!-- <button mat-raised-button (click)="picker.open()">Open</button> -->
+
+      <div class="hidden">
+        <mat-form-field class="example-full-width">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker"
+                [max]="maxDate"
+                formControlName="birthDate"
+                (dateChange)="onDateSelected($event)">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker startView="multi-year"></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+    </div>
+
+    <div class="group">
+      <div class="label">Basic Salary:</div>
+      <input type="text" formControlName="basicSalary" appRupiahFormatter
+        [ngClass]="{'error-input': basicSalary?.invalid && basicSalary?.dirty}" />
+      <div class="error" *ngIf="basicSalary?.dirty && basicSalary?.invalid">
+        <small *ngIf="basicSalary?.hasError('required')">Basic salary is required.</small>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="label">Status:</div>
+      <input formControlName="status"
+      [ngClass]="{'error-input': status?.invalid && status?.dirty}" />
+      <div class="error" *ngIf="status?.dirty && status?.invalid">
+        <small>Status is required.</small>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="label">Group:</div>
+      <input formControlName="group"
+      [ngClass]="{'error-input': group?.invalid && group?.dirty}" />
+      <div class="error" *ngIf="group?.dirty && group?.invalid">
+        <small>Group is required.</small>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="label">Description:</div>
+      <input formControlName="description"
+        [ngClass]="{'error-input': description?.invalid && description?.dirty}"/>
+      <div class="error" *ngIf="description?.dirty && description?.invalid">
+        <small>Description is required.</small>
+      </div>
+    </div>
+
+    <button type="submit" class= "btn-primary-submit" [disabled]="employeeForm.invalid">Submit</button>
+  </form>
+
+</app-layout-page>
