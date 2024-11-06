@@ -66,19 +66,12 @@ export class SharedDropdownV2Component implements OnInit {
     this.isDisabled = isDisabled;
   }
 
-  // onSelect(value: string): void {
-  //   this.isOpenOption = false;
-  //   this.onChange(value);
-  //   this.onTouched();
-  //   this.selectedOption = this.options.find(option => option.value === value) ?? { value: '', label: '' };
-  // }
-
   onSelect(value: string): void {
     this.isOpenOption = false;
     this.value = value;
     this.selectedOption = this.options.find(option => option.value === value) || { value: '', label: '' };
-    this.onChange(this.value); // Notify Angular form of value change
-    this.onTouched(); // Mark as touched
+    this.onChange(this.value);
+    this.onTouched();
   }
 
   toggleOption() {

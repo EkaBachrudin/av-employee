@@ -2,10 +2,10 @@
   @apply bg-secondary-rzaDarkBlue100 p-6 h-full;
 
   .title{
-    @apply text-f-24 text-primary-darkBlue font-medium;
+    @apply text-f-24 text-primary-darkBlue font-medium max-w-[1440px] mx-auto;
   }
 
   .layout-content{
-    @apply bg-primary-rzaWhite rounded-lg mt-4 shadow;
+    @apply bg-primary-rzaWhite rounded-lg mt-4 shadow max-w-[1440px] mx-auto lg:p-6 lg:rounded-[20px];
   }
 }

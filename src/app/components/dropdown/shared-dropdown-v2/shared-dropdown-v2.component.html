@@ -7,8 +7,10 @@
   </div>
 
   <div class="dropdown-v2-select" *ngIf="isOpenOption">
-    <div class="dropdown-v2-option" *ngFor="let option of options" [ngClass]="{'border-2 border-primary-rzaGrey40 rounded font-bold m-[2px]': selectedOption.value === option.value}">
-      <button (click)="onSelect(option.value)">{{ option.label }}</button>
-    </div>
+    <ng-container *ngFor="let option of options">
+      <div (click)="onSelect(option.value)" class="dropdown-v2-option" [ngClass]="{'border-2 border-primary-rzaGrey40 bg-primary-rzaGrey20 rounded font-bold': selectedOption.value === option.value}">
+        <button>{{ option.label }}</button>
+      </div>
+    </ng-container>
   </div>
 </div>

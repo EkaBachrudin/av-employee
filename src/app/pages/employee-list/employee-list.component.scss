@@ -2,7 +2,7 @@
   .top{
     @apply py-4 flex flex-wrap justify-between items-center gap-2;
     .btn-primary-submit{
-      @apply w-fit font-medium text-f-12 mt-0 px-4 py-2 mx-4;
+      @apply w-fit font-medium text-f-12 mt-0 px-4 py-2 mx-4 lg:mx-4;
     }
 
     .filter{
@@ -21,24 +21,26 @@
   }
 
   .employee-table{
+    @apply lg:mt-6;
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     table {
-      width: 100%;            /* Full width of the container */
-      min-width: 600px;       /* Minimum width to force scroll on smaller screens */
+      width: 100%;
+      min-width: 600px;
       border-collapse: collapse;
       font-size: 16px;
     }
 
     th, td {
+      @apply text-primary-rzaGrey80;
       padding: 12px;
       text-align: left;
-      border: 1px solid #ddd;
+      border-bottom: 1px solid #f0f0f0;
     }
 
     th {
-      background-color: #f2f2f2;
+      @apply text-primary-rzaGrey80;
       font-weight: bold;
       text-wrap: nowrap;
     }
@@ -56,5 +58,56 @@
 }
 
 .paginate{
-  @apply mt-3;
+  @apply mt-3 pb-10 lg:pb-2;
+  ::ng-deep{
+    .mat-mdc-paginator-container{
+      @apply bg-primary-rzaWhite;
+    }
+  }
+}
+
+::ng-deep{
+  .custom-snackbar {
+    .mat-mdc-snackbar-surface{
+      background-color: #f7cc09 !important;
+      color: rgb(0, 0, 0) !important;
+    }
+
+    .mdc-button__label{
+      color: rgb(0, 73, 184) !important;
+    }
+  }
+
+  .custom-snackbar-del{
+    .mat-mdc-snackbar-surface{
+      background-color: #f71909 !important;
+      color: rgb(255, 255, 255) !important;
+    }
+
+    .mdc-button__label{
+      color: rgb(109, 168, 255) !important;
+    }
+  }
+}
+
+.label {
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.label-active {
+  @apply px-4 py-2 bg-secondary-rzaHoneyDew text-secondary-rzaGreen border border-secondary-rzaGreen rounded-lg text-f-12;
+}
+
+.label-probation {
+  @apply px-4 py-2 bg-secondary-rzaPapayaWhip text-secondary-rzaWarningYellow border border-secondary-rzaTopaz rounded-lg text-f-12
+}
+
+.label-inactive {
+  @apply px-4 py-2 text-primary-rzaRed border rounded-lg text-f-12;
+  border-color: #DB2941;
+  background-color: #fDDDD4;
 }

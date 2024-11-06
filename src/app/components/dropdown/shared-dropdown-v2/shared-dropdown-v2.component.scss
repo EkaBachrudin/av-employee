@@ -1,5 +1,5 @@
 .dropdown-v2{
-  @apply relative;
+  @apply relative cursor-pointer;
   .dropdown-v2-input{
     @apply min-w-28 justify-between flex bg-secondary-rzaDarkBlue100 text-f-14 border border-primary-rzaGrey40 rounded-lg py-2 px-3 focus:border-primary-rzaGrey60 focus:outline-none relative;
     .label{
@@ -14,7 +14,7 @@
     @apply absolute bg-primary-rzaWhite shadow-lg w-full text-f-14 rounded-b-lg top-9 z-50;
 
     .dropdown-v2-option{
-      @apply px-4 py-3;
+      @apply px-4 py-3 active:bg-primary-rzaGrey40;
     }
   }
 }

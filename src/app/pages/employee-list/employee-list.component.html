@@ -23,34 +23,52 @@
       <table>
         <thead>
           <tr>
-            <th>User Name</th>
+            <th class="text-center">User Name</th>
             <th>Email</th>
             <th>Basic Salary</th>
             <th>Status</th>
-            <th>Action</th>
+            <th class="flex justify-center items-center">Action</th>
           </tr>
         </thead>
 
         <tbody>
           <tr *ngFor="let emp of paginatedEmployees">
-            <td>{{emp.username}}</td>
+            <td class="text-center">{{emp.username}}</td>
             <td>{{emp.email}}</td>
             <td>{{emp.basicSalary | rupiah}}</td>
-            <td>{{emp.status}}</td>
-            <td class="flex justify-center items-center"><button><mat-icon aria-hidden="false" fontIcon="search"></mat-icon></button></td>
+            <td>
+              <span
+                class="label"
+                [ngClass]="{
+                  'label-active': emp.status === 'Active',
+                  'label-probation': emp.status === 'Probation',
+                  'label-inactive': emp.status === 'Inactive'
+                }">
+                {{ emp.status }}
+              </span>
+            </td>
+            <td class="flex justify-center items-center">
+              <button [matMenuTriggerFor]="menu"><mat-icon aria-hidden="false" fontIcon="more_vert"></mat-icon></button>
+
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item><mat-icon aria-hidden="false" fontIcon="details"></mat-icon> Detail</button>
+                <button mat-menu-item (click)="openSnackBar(emp.username, ' Has Edited', 'Close')"><mat-icon aria-hidden="false" fontIcon="edit"></mat-icon> Edit</button>
+                <button mat-menu-item (click)="openSnackBar(emp.username, ' Has Deleted', 'Close')"><mat-icon aria-hidden="false" fontIcon="delete"></mat-icon> Delete</button>
+              </mat-menu>
+            </td>
           </tr>
         </tbody>
       </table>
     </section>
+  </div>
 
-    <div class="paginate">
-      <mat-paginator
-        [length]="totalEmployees"
-        [pageSize]="pageSize"
-        [pageSizeOptions]="pageSizeOptions"
-        (page)="onPageChange($event)"
-        aria-label="Select page">
-      </mat-paginator>
-    </div>
+  <div class="paginate">
+    <mat-paginator
+      [length]="totalEmployees"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="onPageChange($event)"
+      aria-label="Select page">
+    </mat-paginator>
   </div>
 </app-layout-page>

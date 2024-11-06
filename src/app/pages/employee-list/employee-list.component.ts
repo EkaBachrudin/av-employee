@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { LayoutPageComponent } from '../../components/layout-page/layout-page.component';
 import {MatIconModule} from '@angular/material/icon';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -10,6 +10,8 @@ import { CommonModule } from '@angular/common';
 import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 import { RupiahPipe } from '../../shared/pipes/rupiah.pipe';
 import { FilterService } from '../../shared/services/auth/filter/filter.service';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-employee-list',
@@ -21,7 +23,8 @@ import { FilterService } from '../../shared/services/auth/filter/filter.service'
     SharedDropdownV2Component,
     CommonModule,
     MatPaginatorModule,
-    RupiahPipe
+    RupiahPipe,
+    MatMenuModule
   ],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
@@ -53,11 +56,10 @@ export class EmployeeListComponent {
     private fb: FormBuilder,
     private employeeService: EmployeeService,
     private filterService: FilterService,
+    private _snackBar: MatSnackBar
   ) {
     const searchFilter = this.filterService.getSearchFilter();
     const statusFilter = this.filterService.getStatusFilter();
-
-    console.log(statusFilter, searchFilter)
     this.form = this.fb.group({
       selectedOption: [statusFilter ? statusFilter : ''],
       search: [searchFilter ? searchFilter: '']
@@ -84,6 +86,7 @@ export class EmployeeListComponent {
 
   OnDropDown(event: string) {
     this.filterService.setStatusFilter(event);
+    this.updatePaginatedEmployees();
   }
 
   setupSearchDebounce(): void {
@@ -117,5 +120,12 @@ export class EmployeeListComponent {
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
     this.updatePaginatedEmployees();
+  }
+
+  openSnackBar(value: string, message: string, action: string) {
+    this._snackBar.open(value+message, action, {
+      duration: 3000,
+      panelClass: [message === ' Has Edited' ? 'custom-snackbar' : 'custom-snackbar-del']
+    });
   }
 }
