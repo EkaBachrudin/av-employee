@@ -48,7 +48,10 @@ export class SharedDropdownV2Component implements OnInit {
   }
 
   writeValue(value: any): void {
-    this.value = value;
+    if (value !== undefined) {
+      this.value = value;
+      this.selectedOption = this.options.find(option => option.value === value) || { value: '', label: '' };
+    }
   }
 
   registerOnChange(fn: any): void {
@@ -63,11 +66,19 @@ export class SharedDropdownV2Component implements OnInit {
     this.isDisabled = isDisabled;
   }
 
+  // onSelect(value: string): void {
+  //   this.isOpenOption = false;
+  //   this.onChange(value);
+  //   this.onTouched();
+  //   this.selectedOption = this.options.find(option => option.value === value) ?? { value: '', label: '' };
+  // }
+
   onSelect(value: string): void {
     this.isOpenOption = false;
-    this.onChange(value);
-    this.onTouched();
-    this.selectedOption = this.options.find(option => option.value === value) ?? { value: '', label: '' };
+    this.value = value;
+    this.selectedOption = this.options.find(option => option.value === value) || { value: '', label: '' };
+    this.onChange(this.value); // Notify Angular form of value change
+    this.onTouched(); // Mark as touched
   }
 
   toggleOption() {

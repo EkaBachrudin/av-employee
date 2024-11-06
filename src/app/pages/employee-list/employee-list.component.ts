@@ -8,6 +8,8 @@ import { EmployeeService } from '../../application/employee.service';
 import { Employee } from '../../domain/employee.model';
 import { CommonModule } from '@angular/common';
 import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
+import { RupiahPipe } from '../../shared/pipes/rupiah.pipe';
+import { FilterService } from '../../shared/services/auth/filter/filter.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -18,7 +20,8 @@ import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
     ReactiveFormsModule,
     SharedDropdownV2Component,
     CommonModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    RupiahPipe
   ],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
@@ -28,6 +31,7 @@ export class EmployeeListComponent {
 
   get selectedOption() { return this.form.get('selectedOption') };
   get search() { return this.form.get('search') };
+
   employeeData: Employee[] = [];
 
   paginatedEmployees: Employee[] = [];
@@ -47,25 +51,39 @@ export class EmployeeListComponent {
 
   constructor(
     private fb: FormBuilder,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private filterService: FilterService,
   ) {
-    this.form = this.fb.group({
-      selectedOption: [''],
-      search: ['']
-    });
+    const searchFilter = this.filterService.getSearchFilter();
+    const statusFilter = this.filterService.getStatusFilter();
 
+    console.log(statusFilter, searchFilter)
+    this.form = this.fb.group({
+      selectedOption: [statusFilter ? statusFilter : ''],
+      search: [searchFilter ? searchFilter: '']
+    });
+  }
+
+  ngOnInit(): void {
+    this.setupSearchDebounce();
+    this.getEmplyeeData();
+  }
+
+  getEmplyeeData() {
     this.employeeService.getEmployees().subscribe((data) => {
       this.employeeData = data;
       this.updatePaginatedEmployees();
     });
   }
 
-  ngOnInit(): void {
-    this.setupSearchDebounce();
+  onFilter(): void {
+    this.filterService.setSearchFilter(this.search?.value);
+
+    this.updatePaginatedEmployees();
   }
 
-  onFilter(): void {
-    this.updatePaginatedEmployees();
+  OnDropDown(event: string) {
+    this.filterService.setStatusFilter(event);
   }
 
   setupSearchDebounce(): void {
@@ -80,13 +98,10 @@ export class EmployeeListComponent {
   }
 
   updatePaginatedEmployees() {
-    // Apply filter first
     const statusFiltered = this.dropdownOptions.find(dr => dr.value === this.selectedOption?.value);
-    console.log(statusFiltered)
     const filteredEmployees = this.employeeData.filter(employee => {
       const matchesUsername = employee.username.toLowerCase().includes(this.search?.value.toLowerCase());
       const matchesStatus = statusFiltered?.value ? employee.status === statusFiltered?.label : true;
-      console.log(matchesStatus)
       return matchesUsername && matchesStatus;
     });
 
