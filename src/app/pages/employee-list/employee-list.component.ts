@@ -4,6 +4,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SharedDropdownV2Component } from '../../components/dropdown/shared-dropdown-v2/shared-dropdown-v2.component';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { EmployeeService } from '../../application/employee.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -28,7 +29,10 @@ export class EmployeeListComponent {
     { value: 'option3', label: 'Option 3' },
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private employeeService: EmployeeService
+  ) {
     this.form = this.fb.group({
       selectedOption: ['option1'],
       search: ['']
@@ -37,6 +41,10 @@ export class EmployeeListComponent {
 
   ngOnInit(): void {
     this.setupSearchDebounce();
+
+    this.employeeService.getEmployees().subscribe((data) => {
+      console.log(data);
+    });
   }
 
   onFilter(): void {
