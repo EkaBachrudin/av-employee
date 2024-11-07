@@ -33,6 +33,12 @@ To run and develop this project locally, ensure you have the following installed
   
   ```Bash
   npm run start:all
+
+- Login with this dummy account
+  
+  ```Bash
+  email : admin@gmail.com
+  password : admin123
   
 ## Development server
 
