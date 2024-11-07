@@ -1,5 +1,10 @@
 <div class="layout-container">
-  <div class="title">{{title ? title : '...'}}</div>
+  <div class="top">
+    <div class="title">{{title ? title : '...'}}</div>
+    <button (click)="logout()">
+      <mat-icon class="w-3" aria-hidden="false" fontIcon="logout"></mat-icon>
+    </button>
+  </div>
   <div class="layout-content">
     <ng-content></ng-content>
   </div>

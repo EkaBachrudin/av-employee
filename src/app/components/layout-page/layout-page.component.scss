@@ -1,8 +1,15 @@
 .layout-container{
   @apply bg-secondary-rzaDarkBlue100 p-6 h-full;
 
+  .top{
+    @apply flex justify-between items-center max-w-[1440px] mx-auto;
+    button{
+      @apply flex items-center;
+    }
+  }
+
   .title{
-    @apply text-f-24 text-primary-darkBlue font-medium max-w-[1440px] mx-auto;
+    @apply text-f-24 text-primary-darkBlue font-medium;
   }
 
   .layout-content{
