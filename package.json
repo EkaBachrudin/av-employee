@@ -9,7 +9,7 @@
     "test": "ng test",
     "serve:ssr:avo-employee": "node dist/avo-employee/server/server.mjs",
     "start:json-server": "json-server --watch db.json --port 3000",
-    "start:ng": "ng serve --port 4200",
+    "start:ng": "ng serve --port 4200 --open",
     "start:all": "concurrently \"npm run start:json-server\" \"npm run start:ng\""
   },
   "private": true,
