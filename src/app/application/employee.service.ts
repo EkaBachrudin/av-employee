@@ -13,7 +13,11 @@ export class EmployeeService {
     return this.employeeRepository.getEmployees();
   }
 
-  getEmployeeById(id: number): Observable<Employee> {
+  getEmployeeById(id: string): Observable<Employee> {
     return this.employeeRepository.getEmployeeById(id);
+  }
+
+  addEmployee(employee: Employee): Observable<any> {
+    return this.employeeRepository.addEmployee(employee);
   }
 }

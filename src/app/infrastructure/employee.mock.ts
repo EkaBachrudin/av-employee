@@ -17,7 +17,11 @@ export class EmployeeMockRepository extends EmployeeRepository {
     return this.http.get<Employee[]>(`${this.apiUrl}/employees`);
   }
 
-  getEmployeeById(id: number): Observable<Employee> {
+  getEmployeeById(id: string): Observable<Employee> {
     return this.http.get<Employee>(`${this.apiUrl}/employees/${id}`);
+  }
+
+  addEmployee(employee: Employee): Observable<any> {
+    return this.http.post(`${this.apiUrl}/employees`, employee);
   }
 }

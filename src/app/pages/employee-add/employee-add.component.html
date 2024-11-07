@@ -113,8 +113,8 @@
 
       <div class="group">
         <div class="label">Description:</div>
-        <input formControlName="description"
-          [ngClass]="{'error-input': description?.invalid && description?.dirty}"/>
+        <textarea class="input h-14" formControlName="description"
+          [ngClass]="{'error-input': description?.invalid && description?.dirty}"> </textarea>
         <div class="error" *ngIf="description?.dirty && description?.invalid">
           <small>Description is required.</small>
         </div>

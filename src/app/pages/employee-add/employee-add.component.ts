@@ -10,7 +10,9 @@ import moment from 'moment';
 import { RupiahFormatterDirective } from '../../shared/directives/rupiah-formatter.directive';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedDropdownV1Component } from "../../components/dropdown/shared-dropdown-v1/shared-dropdown-v1.component";
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { EmployeeService } from '../../application/employee.service';
+import { Employee } from '../../domain/employee.model';
 
 @Component({
   selector: 'app-employee-add',
@@ -67,7 +69,11 @@ export class EmployeeAddComponent {
   get group() { return this.employeeForm.get('group'); }
   get description() { return this.employeeForm.get('description'); }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private employeeService: EmployeeService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.employeeForm = this.fb.group({
@@ -97,8 +103,20 @@ export class EmployeeAddComponent {
   onSubmit() {
     if (this.employeeForm.valid) {
       console.log('Form Submitted', this.employeeForm.value);
+      this.addNewEmployee(this.employeeForm.value)
     } else {
       this.employeeForm.markAllAsTouched();
     }
+  }
+
+  addNewEmployee(employeePayload: Employee) {
+    employeePayload.basicSalary = +employeePayload.basicSalary;
+
+    this.employeeService.addEmployee(employeePayload).subscribe(
+      data => {
+        this.router.navigate(['/list']);
+      },
+      error => console.error('Error:', error)
+    );
   }
 }

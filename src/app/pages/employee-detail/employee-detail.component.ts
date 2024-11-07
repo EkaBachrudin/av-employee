@@ -29,9 +29,7 @@ export class EmployeeDetailComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private route: ActivatedRoute
-  ){
-
-  }
+  ){}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -39,8 +37,7 @@ export class EmployeeDetailComponent implements OnInit {
   }
 
   getEmployeeDetail() {
-    const id: number = this.id ? +this.id : 0;
-    this.employeeService.getEmployeeById(id).subscribe((data) => {
+    this.employeeService.getEmployeeById(this.id ? this.id : '').subscribe((data) => {
       this.employeeData = data;
       this.birthdateFormated = moment(this.employeeData.birthDate).format('DD / MM / YYYY');
     });

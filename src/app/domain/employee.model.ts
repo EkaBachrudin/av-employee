@@ -1,10 +1,10 @@
 export interface Employee {
-  id?: number;
+  id?: number | string;
   username: string;
   firstName: string;
   lastName: string;
   email: string;
-  birthDate: Date;
+  birthDate: Date | string;
   basicSalary: number;
   status: string;
   group: string;
