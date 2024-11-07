@@ -17,7 +17,7 @@ To run and develop this project locally, ensure you have the following installed
 - Clone branch
 
   ```bash
-  git pull https://github.com/EkaBachrudin/av-employee.git
+  git clone https://github.com/EkaBachrudin/av-employee.git
 
 - Go to app
   
