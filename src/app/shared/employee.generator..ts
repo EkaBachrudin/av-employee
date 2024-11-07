@@ -6,7 +6,7 @@ function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function generateRandomEmployee(): Employee {
+function generateRandomEmployee(id: number): Employee {
   const firstNames = ['John', 'Jane', 'Alice', 'Bob', 'Charlie'];
   const lastNames = ['Doe', 'Smith', 'Johnson', 'Brown', 'Williams'];
   const groups = allGroup;
@@ -23,6 +23,7 @@ function generateRandomEmployee(): Employee {
   const description = `Employee in ${group} department`;
 
   return {
+    id,
     username,
     firstName,
     lastName,
@@ -38,7 +39,7 @@ function generateRandomEmployee(): Employee {
 export function generateMockEmployees(count: number): Employee[] {
   const employees: Employee[] = [];
   for (let i = 0; i < count; i++) {
-    employees.push(generateRandomEmployee());
+    employees.push(generateRandomEmployee(i+1));
   }
   return employees;
 }
