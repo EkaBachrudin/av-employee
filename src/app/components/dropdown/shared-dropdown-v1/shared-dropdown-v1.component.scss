@@ -1,0 +1,26 @@
+.dropdown-v1{
+  @apply relative cursor-pointer;
+  .dropdown-v1-input{
+    @apply min-w-28 justify-between flex bg-secondary-rzaDarkBlue100 text-f-14 border  rounded-lg py-2 px-3 relative;
+    border-color: rgb(237 237 237);
+    .label{
+      @apply text-f-14 text-primary-rzaGrey80;
+      .value{
+        @apply text-primary-darkBlue font-bold;
+      }
+    }
+  }
+
+  .dropdown-v1-select{
+    @apply absolute bg-primary-rzaWhite shadow-lg w-full text-f-14 rounded-b-lg top-9 z-50;
+
+    input{
+      @apply w-full bg-secondary-rzaDarkBlue100 text-f-14 border  rounded-lg py-2 px-3 relative;
+    }
+
+    .dropdown-v1-option{
+      @apply px-4 py-3 active:bg-primary-rzaGrey40;
+    }
+  }
+}
+

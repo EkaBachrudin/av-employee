@@ -2,4 +2,8 @@
   .btn-primary-submit{
     @apply rounded-lg bg-secondary-rzaOtherLightBlue text-primary-rzaWhite text-f-18 font-bold cursor-pointer w-full mt-8 py-3 disabled:bg-primary-rzaGrey40 disabled:cursor-not-allowed active:bg-secondary-rzaBlue;
   }
+
+  .btn-secondary-submit{
+    @apply rounded-lg bg-secondary-rzaRed text-primary-rzaWhite text-f-18 font-bold cursor-pointer w-full mt-8 py-3 disabled:bg-primary-rzaGrey40 disabled:cursor-not-allowed active:bg-secondary-rzaBlue;
+  }
 }

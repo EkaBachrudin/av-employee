@@ -1,0 +1,19 @@
+<div class="dropdown-v1">
+  <div class="dropdown-v1-input" (click)="toggleOption()" [ngClass]="{'border border-primary-rzaGrey60': isOpenOption}">
+    <div class="label">
+      <span class="value">{{selectedOption.label}} </span>
+    </div>
+    <mat-icon aria-hidden="false" fontIcon="keyboard_arrow_down"></mat-icon>
+  </div>
+
+  <div class="dropdown-v1-select" *ngIf="isOpenOption">
+    <div class="dropdown-v1-option" *ngIf="isSearch">
+      <input type="text" [(ngModel)]="searchValue" (input)="searchValueMethod()" placeholder="Serch...">
+    </div>
+    <ng-container *ngFor="let option of filteredOption">
+      <div (click)="onSelect(option.value)" class="dropdown-v1-option" [ngClass]="{'border-2 border-primary-rzaGrey40 bg-primary-rzaGrey20 rounded font-bold': selectedOption.value === option.value}">
+        <button>{{ option.label }}</button>
+      </div>
+    </ng-container>
+  </div>
+</div>

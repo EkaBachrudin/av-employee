@@ -24,7 +24,7 @@
         <thead>
           <tr>
             <th class="text-center">User Name</th>
-            <th>Email</th>
+            <th class="hidden lg:block">Email</th>
             <th>Basic Salary</th>
             <th>Status</th>
             <th class="flex justify-center items-center">Action</th>
@@ -34,7 +34,7 @@
         <tbody>
           <tr *ngFor="let emp of paginatedEmployees">
             <td class="text-center">{{emp.username}}</td>
-            <td>{{emp.email}}</td>
+            <td class="hidden lg:block">{{emp.email}}</td>
             <td>{{emp.basicSalary | rupiah}}</td>
             <td>
               <span

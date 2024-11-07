@@ -1,5 +1,5 @@
 form{
-  @apply p-6;
+  @apply p-6 lg:flex lg:gap-4;
   .group{
     @apply mb-4 relative;
     .label{

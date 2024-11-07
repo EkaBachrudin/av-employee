@@ -9,6 +9,8 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import moment from 'moment';
 import { RupiahFormatterDirective } from '../../shared/directives/rupiah-formatter.directive';
 import { MatIconModule } from '@angular/material/icon';
+import { SharedDropdownV1Component } from "../../components/dropdown/shared-dropdown-v1/shared-dropdown-v1.component";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-employee-add',
@@ -22,8 +24,10 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatMomentDateModule,
     RupiahFormatterDirective,
-    MatIconModule
-  ],
+    MatIconModule,
+    SharedDropdownV1Component,
+    RouterModule
+],
   templateUrl: './employee-add.component.html',
   styleUrl: './employee-add.component.scss'
 })
@@ -32,6 +36,26 @@ export class EmployeeAddComponent {
 
   maxDate: Date = new Date();
   employeeForm!: FormGroup;
+
+  dropdownOptions: { value: string; label: string }[] = [
+    { value: 'Active', label: 'Active' },
+    { value: 'Probation', label: 'Probation' },
+    { value: 'Inactive', label: 'Inactive' }
+  ];
+
+  groupOptions: { value: string; label: string }[] = [
+    { value: '', label: '--select--' },
+    { value: 'Frontend', label: 'Frontend' },
+    { value: 'Backend', label: 'Backend' },
+    { value: 'SRE', label: 'SRE' },
+    { value: 'Marketing', label: 'Marketing' },
+    { value: 'Sales', label: 'Sales' },
+    { value: 'HR', label: 'HR' },
+    { value: 'Finance', label: 'Finance' },
+    { value: 'Content', label: 'Content' },
+    { value: 'Legal', label: 'Legal' },
+    { value: 'GA', label: 'GA' }
+  ];
 
   get username() { return this.employeeForm.get('username'); }
   get firstName() { return this.employeeForm.get('firstName'); }
