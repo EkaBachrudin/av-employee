@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import * as CryptoJS from 'crypto-js'
 
 @Injectable({
@@ -13,7 +14,7 @@ export class AuthService {
   private encryptionKey = 'L(qtlsEG/uBhsB]';
   private encryptedStorageKey = 'bqLIIljQzEhGJoSCp01ea7Iog3EwZdhT';
 
-  constructor() {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   login(email: string, password: string): boolean {
     if (email === this.mockUser.email && password === this.mockUser.password) {
@@ -22,7 +23,7 @@ export class AuthService {
         this.encryptionKey
       ).toString();
 
-      localStorage.setItem(this.encryptedStorageKey, encryptedData);
+      if (isPlatformBrowser(this.platformId)) localStorage.setItem(this.encryptedStorageKey, encryptedData);
       return true;
     } else {
       return false;
@@ -30,7 +31,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    const encryptedData = localStorage.getItem(this.encryptedStorageKey);
+    const encryptedData = isPlatformBrowser(this.platformId) ?  localStorage.getItem(this.encryptedStorageKey) : '';
     if (encryptedData) {
       try {
         const bytes = CryptoJS.AES.decrypt(encryptedData, this.encryptionKey);
@@ -49,6 +50,6 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem(this.encryptedStorageKey);
+    if(isPlatformBrowser(this.platformId)) localStorage.removeItem(this.encryptedStorageKey);
   }
 }
