@@ -12,4 +12,8 @@ export class EmployeeService {
   getEmployees(): Observable<Employee[]> {
     return this.employeeRepository.getEmployees();
   }
+
+  getEmployeeById(id: number): Observable<Employee> {
+    return this.employeeRepository.getEmployeeById(id);
+  }
 }

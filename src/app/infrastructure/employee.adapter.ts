@@ -17,4 +17,8 @@ export class EmployeeApiRepository extends EmployeeRepository {
   getEmployees(): Observable<Employee[]> {
     return this.http.get<Employee[]>(`${this.apiUrl}`);
   }
+
+  getEmployeeById(id: number): Observable<Employee> {
+    return this.http.get<Employee>(`${this.apiUrl}/${id}`);
+  }
 }
