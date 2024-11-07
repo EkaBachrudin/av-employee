@@ -29,7 +29,7 @@ To run and develop this project locally, ensure you have the following installed
   ```Bash
   npm install
 
-- Install all pakage
+- Development server
   
   ```Bash
   npm run start:all
