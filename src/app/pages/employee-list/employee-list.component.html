@@ -51,7 +51,7 @@
               <button [matMenuTriggerFor]="menu"><mat-icon aria-hidden="false" fontIcon="more_vert"></mat-icon></button>
 
               <mat-menu #menu="matMenu">
-                <button mat-menu-item><mat-icon aria-hidden="false" fontIcon="details"></mat-icon> Detail</button>
+                <button mat-menu-item [routerLink]="['/' + emp.id + '']"><mat-icon aria-hidden="false" fontIcon="details"></mat-icon> Detail</button>
                 <button mat-menu-item (click)="openSnackBar(emp.username, ' Has Edited', 'Close')"><mat-icon aria-hidden="false" fontIcon="edit"></mat-icon> Edit</button>
                 <button mat-menu-item (click)="openSnackBar(emp.username, ' Has Deleted', 'Close')"><mat-icon aria-hidden="false" fontIcon="delete"></mat-icon> Delete</button>
               </mat-menu>

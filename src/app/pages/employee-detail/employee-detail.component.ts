@@ -1,29 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../application/employee.service';
+import { LayoutPageComponent } from '../../components/layout-page/layout-page.component';
+import { Employee } from '../../domain/employee.model';
+import { CommonModule } from '@angular/common';
+import { RupiahPipe } from "../../shared/pipes/rupiah.pipe";
+import moment from 'moment';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-employee-detail',
   standalone: true,
-  imports: [],
+  imports: [
+    CommonModule,
+    LayoutPageComponent,
+    RupiahPipe,
+    RouterModule
+],
   templateUrl: './employee-detail.component.html',
   styleUrl: './employee-detail.component.scss'
 })
 export class EmployeeDetailComponent implements OnInit {
 
+  id: string | null = null;
+
+  employeeData!: Employee;
+  birthdateFormated!: string;
+
   constructor(
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private route: ActivatedRoute
   ){
 
   }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
     this.getEmployeeDetail();
   }
 
   getEmployeeDetail() {
-    const employeeId: number = 1;
-    this.employeeService.getEmployeeById(employeeId).subscribe((data) => {
-     console.log(data)
+    const id: number = this.id ? +this.id : 0;
+    this.employeeService.getEmployeeById(id).subscribe((data) => {
+      this.employeeData = data;
+      this.birthdateFormated = moment(this.employeeData.birthDate).format('DD / MM / YYYY');
     });
   }
 

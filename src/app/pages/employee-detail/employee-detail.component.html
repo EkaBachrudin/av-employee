@@ -1,1 +1,68 @@
-<p>employee-detail works!</p>
+<app-layout-page [title]="'Employee Detail'">
+  <div class="detail-container">
+    <div class="username">{{employeeData?.username}}</div>
+
+    <div class="lg:flex lg:gap-5">
+      <div class="w-full">
+        <div class="section-main">
+          <div class="group">
+            <div class="key">First Name</div>
+            <div class="value">{{employeeData?.firstName}}</div>
+          </div>
+          <div class="group">
+            <div class="key">Last Name</div>
+            <div class="value">{{employeeData?.lastName}}</div>
+          </div>
+          <div class="group">
+            <div class="key">Email</div>
+            <div class="value">{{employeeData?.email}}</div>
+          </div>
+          <div class="group">
+            <div class="key">Birth Date</div>
+            <div class="value">{{birthdateFormated}} </div>
+          </div>
+        </div>
+
+        <div class="section-group">
+          <div class="group">
+            <div class="key">Group</div>
+            <div class="value">{{employeeData?.group}}</div>
+          </div>
+          <img src="/assets/group.svg" alt="group" />
+        </div>
+      </div>
+
+     <div class="w-full">
+      <div class="section-legal">
+        <div class="title">Legal</div>
+        <div class="group">
+          <div class="key">Status</div>
+          <div class="value">
+            <span class="label" [ngClass]="{
+              'label-active': employeeData?.status === 'Active',
+              'label-probation': employeeData?.status === 'Probation',
+              'label-inactive': employeeData?.status === 'Inactive'
+            }">
+              {{ employeeData?.status }}
+            </span>
+          </div>
+        </div>
+        <div class="group">
+          <div class="key">Basic Salary</div>
+          <div class="value">{{employeeData.basicSalary | rupiah}}</div>
+        </div>
+      </div>
+
+      <div class="section-about">
+        <div class="title">About <span>{{employeeData?.username}} </span></div>
+        <div class="desc">
+          {{employeeData?.description}}
+        </div>
+      </div>
+     </div>
+    </div>
+
+    <button [routerLink]="['/list']" class= "btn-primary-submit">Ok</button>
+
+  </div>
+</app-layout-page>
