@@ -22,14 +22,14 @@ To run and develop this project locally, ensure you have the following installed
 - Go to app
   
   ```Bash
-  cd avo-employee
+  cd av-employee
 
 - Install all pakage
   
   ```Bash
   npm install
 
-- Install all pakage
+- Development server
   
   ```Bash
   npm run start:all
