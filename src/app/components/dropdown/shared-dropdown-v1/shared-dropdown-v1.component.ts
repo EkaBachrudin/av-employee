@@ -39,6 +39,8 @@ export class SharedDropdownV1Component {
 
   filteredOption: { value: string; label: string }[] = [];
 
+  selectedIndex = 0;
+
   onChange = (value: string) => {};
   onTouched = () => {};
 
@@ -93,6 +95,26 @@ export class SharedDropdownV1Component {
   searchValueMethod() {
     this.filteredOption = this.options;
     this.filteredOption = this.filteredOption.filter(val => val.value.toLowerCase().includes(this.searchValue.toLowerCase()) )
+  }
+
+  onKeydown(event: KeyboardEvent) {
+    if (!this.isOpenOption) return;
+
+    switch (event.key) {
+      case 'ArrowDown':
+        event.preventDefault();
+        this.selectedIndex = (this.selectedIndex + 1) % this.options.length;
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        this.selectedIndex = (this.selectedIndex - 1 + this.options.length) % this.options.length;
+        break;
+      case 'Enter':
+        this.isOpenOption = false;
+        break;
+    }
+
+    this.selectedOption = this.options[this.selectedIndex];
   }
 
   private addOutsideClickListener() {

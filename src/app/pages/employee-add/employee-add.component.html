@@ -2,7 +2,7 @@
   <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
     <div class="w-full lg:w-1/2">
       <div class="group">
-        <div  class="label">Username:</div>
+        <div  class="label">Username <span class="text-primary-rzaRed">*</span></div>
         <input formControlName="username"
          [ngClass]="{'error-input': username?.invalid && username?.dirty}" />
         <div class="error" *ngIf="username?.dirty && username?.invalid">
@@ -13,7 +13,7 @@
       </div>
 
       <div class="group">
-        <div class="label">First Name:</div>
+        <div class="label">First Name <span class="text-primary-rzaRed">*</span></div>
         <input formControlName="firstName"
         [ngClass]="{'error-input': firstName?.invalid && firstName?.dirty}" />
         <div class="error" *ngIf="firstName?.dirty && firstName?.invalid">
@@ -23,7 +23,7 @@
       </div>
 
      <div class="group">
-        <div class="label">Last Name:</div>
+        <div class="label">Last Name <span class="text-primary-rzaRed">*</span></div>
         <input formControlName="lastName"
           [ngClass]="{'error-input': lastName?.invalid && lastName?.dirty}"
         />
@@ -34,7 +34,7 @@
      </div>
 
       <div class="group">
-        <div class="label">Email:</div>
+        <div class="label">Email <span class="text-primary-rzaRed">*</span></div>
         <input formControlName="email"
           [ngClass]="{'error-input': email?.invalid && email?.dirty}" />
         <div class="error" *ngIf="email?.dirty && email?.invalid">
@@ -44,7 +44,7 @@
       </div>
 
       <div class="group">
-        <div class="label">Birth Date:</div>
+        <div class="label">Birth Date <span class="text-primary-rzaRed">*</span></div>
         <div class="input"
           [ngClass]="{'error-input': birthDate?.invalid && birthDate?.dirty}" (click)="picker.open()">
           {{selectedDate ? selectedDate : 'DD/MM/YYYY'}}
@@ -77,7 +77,7 @@
 
     <div class="w-full lg:w-1/2">
       <div class="group">
-        <div class="label">Basic Salary:</div>
+        <div class="label">Basic Salary <span class="text-primary-rzaRed">*</span></div>
         <input type="text" formControlName="basicSalary" appRupiahFormatter
           [ngClass]="{'error-input': basicSalary?.invalid && basicSalary?.dirty}" />
         <div class="error" *ngIf="basicSalary?.dirty && basicSalary?.invalid">
@@ -86,7 +86,7 @@
       </div>
 
       <div class="group">
-        <div class="label">Group:</div>
+        <div class="label">Group <span class="text-primary-rzaRed">*</span></div>
         <app-shared-dropdown-v1
           formControlName="group"
           [options]="groupOptions"
@@ -99,7 +99,7 @@
       </div>
 
       <div class="group">
-        <div class="label">Status:</div>
+        <div class="label">Status <span class="text-primary-rzaRed">*</span></div>
         <app-shared-dropdown-v1
           formControlName="status"
           [options]="dropdownOptions"
@@ -112,7 +112,7 @@
       </div>
 
       <div class="group">
-        <div class="label">Description:</div>
+        <div class="label">Description <span class="text-primary-rzaRed">*</span></div>
         <textarea class="input h-14" formControlName="description"
           [ngClass]="{'error-input': description?.invalid && description?.dirty}"> </textarea>
         <div class="error" *ngIf="description?.dirty && description?.invalid">

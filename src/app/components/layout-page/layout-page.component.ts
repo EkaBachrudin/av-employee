@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../shared/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout-page',
@@ -10,13 +11,16 @@ import { AuthService } from '../../shared/services/auth/auth.service';
   styleUrl: './layout-page.component.scss'
 })
 export class LayoutPageComponent {
-  constructor(private authService: AuthService){
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ){
 
   }
 
   logout() {
     this.authService.logout();
-    window.location.reload();
+    this.router.navigate(['/login']);
   }
   @Input() title!: string;
 }

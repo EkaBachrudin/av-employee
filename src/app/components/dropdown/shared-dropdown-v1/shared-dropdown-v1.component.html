@@ -1,5 +1,8 @@
 <div class="dropdown-v1">
-  <div class="dropdown-v1-input" (click)="toggleOption()" [ngClass]="{'border border-primary-rzaGrey60': isOpenOption}">
+  <div class="dropdown-v1-input"
+       (click)="toggleOption()"
+       [ngClass]="{'border border-primary-rzaGrey60': isOpenOption}"
+       tabindex="0" (keydown)="onKeydown($event)">
     <div class="label">
       <span class="value">{{selectedOption.label}} </span>
     </div>

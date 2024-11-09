@@ -40,9 +40,10 @@ export class EmployeeAddComponent {
   employeeForm!: FormGroup;
 
   dropdownOptions: { value: string; label: string }[] = [
-    { value: 'Active', label: 'Active' },
+    { value: '', label: '--select--' },
+    { value: 'active', label: 'Active' },
     { value: 'Probation', label: 'Probation' },
-    { value: 'Inactive', label: 'Inactive' }
+    { value: 'inactive', label: 'Inactive' }
   ];
 
   groupOptions: { value: string; label: string }[] = [
