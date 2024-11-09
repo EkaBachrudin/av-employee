@@ -1235,6 +1235,30 @@
       "status": "Active",
       "group": "Frontend",
       "description": "Hello im yahsa, end im frontend developer"
+    },
+    {
+      "id": "d2fd",
+      "username": "yahsa",
+      "firstName": "Habid",
+      "lastName": "nursa",
+      "email": "Habis@gmail.com",
+      "birthDate": "2024-11-08T17:00:00.000Z",
+      "basicSalary": 2000000,
+      "status": "Active",
+      "group": "Frontend",
+      "description": "ddasdffa"
+    },
+    {
+      "id": "adf7",
+      "username": "Yogi",
+      "firstName": "Prayoga",
+      "lastName": "Bachrudin",
+      "email": "yogi@gmail.com",
+      "birthDate": "2014-11-08T17:00:00.000Z",
+      "basicSalary": 20000,
+      "status": "Active",
+      "group": "Sales",
+      "description": "Employee in Finance department"
     }
   ]
 }
