@@ -22,7 +22,7 @@ export class EmployeeApiRepository extends EmployeeRepository {
     return this.http.get<Employee>(`${this.apiUrl}/${id}`);
   }
 
-  addEmployee(employee: Employee): Observable<any> {
-    return this.http.post(this.apiUrl, employee);
+  addEmployee(employee: Employee): Observable<Employee> {
+    return this.http.post<Employee>(this.apiUrl, employee);
   }
 }

@@ -28,7 +28,7 @@ export class SharedDropdownV1Component {
 
   private clickListener: (() => void) | undefined;
 
-  value: any;
+  value: string = '';
   isDisabled: boolean = false;
 
   isOpenOption: boolean = false;
@@ -55,18 +55,18 @@ export class SharedDropdownV1Component {
     }
   }
 
-  writeValue(value: any): void {
+  writeValue(value: string): void {
     if (value !== undefined) {
       this.value = value;
       this.selectedOption = this.options.find(option => option.value === value) || { value: '', label: '' };
     }
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: (value: string) => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 

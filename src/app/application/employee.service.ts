@@ -17,7 +17,7 @@ export class EmployeeService {
     return this.employeeRepository.getEmployeeById(id);
   }
 
-  addEmployee(employee: Employee): Observable<any> {
+  addEmployee(employee: Employee): Observable<Employee> {
     return this.employeeRepository.addEmployee(employee);
   }
 }

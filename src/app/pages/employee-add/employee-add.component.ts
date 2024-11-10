@@ -115,6 +115,7 @@ export class EmployeeAddComponent {
 
     this.employeeService.addEmployee(employeePayload).subscribe(
       data => {
+        console.log(data);
         this.router.navigate(['/list']);
       },
       error => console.error('Error:', error)

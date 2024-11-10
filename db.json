@@ -1259,6 +1259,18 @@
       "status": "Active",
       "group": "Sales",
       "description": "Employee in Finance department"
+    },
+    {
+      "id": "182d",
+      "username": "Nurhayati",
+      "firstName": "Nugraha",
+      "lastName": "Aji",
+      "email": "nurhayati@gmail.com",
+      "birthDate": "2024-11-06T17:00:00.000Z",
+      "basicSalary": 20000000,
+      "status": "Active",
+      "group": "Frontend",
+      "description": "Anguar unit testing"
     }
   ]
 }
