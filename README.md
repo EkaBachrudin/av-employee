@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 To run and develop this project locally, ensure you have the following installed:
 
-- **Node.js**: Version 16.x or later is required. You can download it from [Node.js official site](https://nodejs.org/).
+- **Node.js**: v22.6.0
 - **Angular CLI**: This project requires Angular CLI version 18.2.11 or later. Install it globally using:
 
   ```bash
